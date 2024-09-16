@@ -9,9 +9,19 @@ import ddf.minim.ugens.*;
 void setup() 
 {
   size(900,600);
+  //Load Music
+  String MusicPath = "MP3s/";
+  String mp3FileName = ".mp3";
+  
+  String[] song = {
+    "nevergonnagiveyouup"
+  };
+  
+  //song.play();
+  
 } //End Setup
 void draw() {
-  
+ 
 } //End draw
 void mousePressed() {
 } //End MP
