@@ -5,16 +5,23 @@ import ddf.minim.signals.*;
 import ddf.minim.spi.*;
 import ddf.minim.ugens.*;
 
+Minim minim;
+int numberOfSongs = 1;
+AudioPlayer[] song = new AudioPlayer[numberOfSongs];
+int currentSong = numberOfSongs - numberOfSongs;
+
 //Global Variables
 void setup() 
 {
   size(900,600);
+  
+  minim = new Minim(this);
   //Load Music
-  String MusicPath = "MP3s/";
+  String musicPath = "MP3s/";
   String mp3FileName = ".mp3";
   
   String[] song = {
-    "nevergonnagiveyouup"
+    "1"
   };
   
   //song.play();
