@@ -11,24 +11,27 @@ AudioPlayer[] song = new AudioPlayer[numberOfSongs];
 int currentSong = numberOfSongs - numberOfSongs;
 
 //Global Variables
-void setup() 
+void setup()
 {
-  size(900,600);
-  
+  size(900, 600);
+
   minim = new Minim(this);
   //Load Music
   String musicPath = "MP3s/";
   String mp3FileName = ".mp3";
-  
-  String[] song = {
-    "1"
+  String[] musicNames = {
+    "one",
+    "two",
+    "three"
   };
+
+  song[currentSong] = minim.loadFile( "../../" + musicPath + musicNames[0] + mp3FileName );
+  song[currentSong] = minim.loadFile( "../../" + musicPath + musicNames[1] + mp3FileName );
+  song[currentSong] = minim.loadFile( "../../" + musicPath + musicNames[2] + mp3FileName );
   
-  //song.play();
-  
+  song[currentSong + 1].play();
 } //End Setup
 void draw() {
- 
 } //End draw
 void mousePressed() {
 } //End MP
