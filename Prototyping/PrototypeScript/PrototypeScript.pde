@@ -6,7 +6,7 @@ import ddf.minim.spi.*;
 import ddf.minim.ugens.*;
 
 Minim minim;
-int numberOfSongs = 1;
+int numberOfSongs = 3;
 AudioPlayer[] song = new AudioPlayer[numberOfSongs];
 int currentSong = numberOfSongs - numberOfSongs;
 
@@ -25,14 +25,14 @@ void setup()
     "three"
   };
 
-  song[currentSong] = minim.loadFile( "../../" + musicPath + musicNames[0] + mp3FileName );
-  song[currentSong] = minim.loadFile( "../../" + musicPath + musicNames[1] + mp3FileName );
-  song[currentSong] = minim.loadFile( "../../" + musicPath + musicNames[2] + mp3FileName );
+  song[currentSong] = minim.loadFile( "../../" + musicPath + musicNames[0] + musicPath);
+  //song[currentSong] = minim.loadFile( "../../" + musicPath + musicNames[1] + mp3FileName );
+  //song[currentSong] = minim.loadFile( "../../" + musicPath + musicNames[2] + mp3FileName );
   
-  song[currentSong + 1].play();
+  song[currentSong+=1].play();
 } //End Setup
 void draw() {
-} //End draw
+} //End drawg
 void mousePressed() {
 } //End MP
 void keyPressed() {
