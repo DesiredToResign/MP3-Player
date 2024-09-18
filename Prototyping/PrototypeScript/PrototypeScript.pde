@@ -7,16 +7,16 @@ import ddf.minim.ugens.*;
 
 Minim minim;
 int numberOfSongs = 3;
-AudioPlayer[] song = new AudioPlayer[numberOfSongs];
-int currentSong = numberOfSongs - numberOfSongs;
+AudioPlayer[] songs = new AudioPlayer[numberOfSongs];
+int currentSongIndex = 0; // Start with the first song
 
-//Global Variables
-void setup()
-{
+// Global Variables
+void setup() {
   size(900, 600);
-
+  
   minim = new Minim(this);
-  //Load Music
+  
+  // Load Music
   String musicPath = "MP3s/";
   String mp3FileName = ".mp3";
   String[] musicNames = {
@@ -25,15 +25,25 @@ void setup()
     "three"
   };
 
-  song[currentSong] = minim.loadFile( "../../" + musicPath + musicNames[0] + mp3FileName);
-  //song[currentSong] = minim.loadFile( "../../" + musicPath + musicNames[1] + mp3FileName );
-  //song[currentSong] = minim.loadFile( "../../" + musicPath + musicNames[2] + mp3FileName );
+  for (int i = 0; i < numberOfSongs; i++) {
+    songs[i] = minim.loadFile(musicPath + musicNames[i] + mp3FileName);
+  }
   
-  song[currentSong+=1].play();
-} //End Setup
+  songs[currentSongIndex].play();
+} // End Setup
+
 void draw() {
-} //End drawg
+  
+} // End draw
+
 void mousePressed() {
-} //End MP
+  currentSongIndex = (currentSongIndex + 1) % numberOfSongs;
+  for (AudioPlayer song : songs) {
+    song.close();
+  }
+  songs[currentSongIndex].play();
+} // End mousePressed
+
 void keyPressed() {
-} //End KP
+  
+} // End keyPressed
