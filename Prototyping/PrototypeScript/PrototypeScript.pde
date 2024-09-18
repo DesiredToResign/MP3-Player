@@ -25,7 +25,7 @@ void setup()
     "three"
   };
 
-  song[currentSong] = minim.loadFile( "../../" + musicPath + musicNames[0] + musicPath);
+  song[currentSong] = minim.loadFile( "../../" + musicPath + musicNames[0] + mp3FileName);
   //song[currentSong] = minim.loadFile( "../../" + musicPath + musicNames[1] + mp3FileName );
   //song[currentSong] = minim.loadFile( "../../" + musicPath + musicNames[2] + mp3FileName );
   
