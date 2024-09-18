@@ -37,13 +37,15 @@ void draw() {
 } // End draw
 
 void mousePressed() {
-  currentSongIndex = (currentSongIndex + 1) % numberOfSongs;
-  for (AudioPlayer song : songs) {
-    song.close();
-  }
-  songs[currentSongIndex].play();
+  
 } // End mousePressed
 
 void keyPressed() {
-  
+  if (key == ' ') {
+      currentSongIndex = (currentSongIndex + 1) % numberOfSongs;
+      for (AudioPlayer song : songs) {
+        song.close();
+      }
+  songs[currentSongIndex].play();
+  }
 } // End keyPressed
