@@ -8,7 +8,7 @@ import ddf.minim.ugens.*;
 Minim minim;
 int numberOfSongs = 3;
 AudioPlayer[] songs = new AudioPlayer[numberOfSongs];
-int currentSongIndex = 0; // Start with the first song
+int currentSongIndex = 0;
 
 // Global Variables
 void setup() {
