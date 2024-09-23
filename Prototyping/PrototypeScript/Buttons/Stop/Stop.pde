@@ -29,7 +29,7 @@ void setup() {
     songs[i] = minim.loadFile(musicPath + musicNames[i] + mp3FileName);
   }
 
-  songs[currentSongIndex].play();
+  // songs[currentSongIndex].play();
 } // End Setup
 
 void draw() {
@@ -38,11 +38,17 @@ void draw() {
     "two",
     "three"
   };
+  int half = 1/2;
+  int quart = 1/4;
   background(255, 0, 0);
   fill(0);
   textSize(32);
   text("Now Playing: " + musicNames[currentSongIndex], 50, height / 2);
   text("Press SPACE to switch songs", 50, height / 2 + 40);
+    rect(width*half, height*half, width*quart, height*quart);
+ // rect();
+ // rect();
+ // rect();
 } // End draw
 
 void mousePressed() {
