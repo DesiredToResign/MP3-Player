@@ -10,6 +10,9 @@ int numberOfSongs = 3;
 AudioPlayer[] songs = new AudioPlayer[numberOfSongs];
 int currentSongIndex = 0;
 
+int appWidth, appHeight;
+float musicButtonX, musicButtonY, musicButtonWidth, musicButtonHeight;
+
 String musicPath = "MP3s/";
 String mp3FileName = ".mp3";
 String[] musicNames = {
@@ -21,6 +24,13 @@ String[] musicNames = {
 // Global Variables
 void setup() {
   size(900, 600);
+  appWidth = width;
+  appHeight = height;
+  // button variables
+  musicButtonX = appWidth*1/4;
+  musicButtonY = appHeight*1/4;
+  musicButtonWidth = appWidth*1/2;
+  musicButtonHeight = appHeight*1/2;
 
   minim = new Minim(this);
 
@@ -29,7 +39,7 @@ void setup() {
     songs[i] = minim.loadFile(musicPath + musicNames[i] + mp3FileName);
   }
 
-  songs[currentSongIndex].play();
+  // songs[currentSongIndex].play();
 } // End Setup
 
 void draw() {
@@ -38,11 +48,17 @@ void draw() {
     "two",
     "three"
   };
-  background(255, 0, 0);
+
+  background(255, 255, 255);
   fill(0);
   textSize(32);
   text("Now Playing: " + musicNames[currentSongIndex], 50, height / 2);
   text("Press SPACE to switch songs", 50, height / 2 + 40);
+  rect(musicButtonX, musicButtonY, musicButtonWidth*1/10, musicButtonHeight*1/10);
+  
+  // rect(X, Y, Width, Height);
+  // rect();
+  // rect();
 } // End draw
 
 void mousePressed() {
