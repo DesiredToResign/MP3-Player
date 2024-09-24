@@ -27,10 +27,10 @@ void setup() {
   appWidth = width;
   appHeight = height;
   // button variables
-  musicButtonX = appWidth*1/4;
-  musicButtonY = appHeight*1/4;
   musicButtonWidth = appWidth*1/2;
   musicButtonHeight = appHeight*1/2;
+  musicButtonX = musicButtonWidth - musicButtonWidth*1/2;
+  musicButtonY = musicButtonHeight - musicButtonHeight*1/2;
 
   minim = new Minim(this);
 
@@ -54,7 +54,7 @@ void draw() {
   textSize(32);
   text("Now Playing: " + musicNames[currentSongIndex], 50, height / 2);
   text("Press SPACE to switch songs", 50, height / 2 + 40);
-  rect(musicButtonX, musicButtonY, musicButtonWidth*1/10, musicButtonHeight*1/10);
+  rect(musicButtonX, musicButtonY, musicButtonWidth, musicButtonHeight);
   
   // rect(X, Y, Width, Height);
   // rect();
