@@ -10,10 +10,6 @@ int numberOfSongs = 3;
 AudioPlayer[] songs = new AudioPlayer[numberOfSongs];
 int currentSongIndex = 0;
 
-int appWidth, appHeight;
-float musicButtonX, musicButtonY, musicButtonWidth, musicButtonHeight;
-float stopX, stopY, stopWidth, stopHeight;
-
 String musicPath = "MP3s/";
 String mp3FileName = ".mp3";
 String[] musicNames = {
@@ -25,27 +21,6 @@ String[] musicNames = {
 // Global Variables
 void setup() {
   size(900, 600);
-  appWidth = width;
-  appHeight = height;
-  // button variables
-  musicButtonWidth = appWidth*1/2;
-  musicButtonHeight = appHeight*1/2;
-  musicButtonX = musicButtonWidth - musicButtonWidth*1/2;
-  musicButtonY = musicButtonHeight - musicButtonHeight*1/2;
-  if (musicButtonWidth >= musicButtonHeight) {
-    //musicButtonWidth needs to change
-    musicButtonWidth = musicButtonHeight;
-  } else {
-    musicButtonHeight = musicButtonWidth;
-  }
-  float padding = 1.0/4.0;
-  float stopButtonSize = 1.0-(1.0/4.0);
-  
-  stopWidth = musicButtonWidth*stopButtonSize; 
-  stopHeight = musicButtonHeight*stopButtonSize;
-
-  stopX = musicButtonX+=padding;
-  stopY = musicButtonY+=padding; 
 
   minim = new Minim(this);
 
@@ -63,18 +38,17 @@ void draw() {
     "two",
     "three"
   };
-
-  background(0);
-  fill(255, 0, 0);
+  int half = 1/2;
+  int quart = 1/4;
+  background(255, 0, 0);
+  fill(0);
   textSize(32);
   text("Now Playing: " + musicNames[currentSongIndex], 50, height / 2);
   text("Press SPACE to switch songs", 50, height / 2 + 40);
-  rect(musicButtonX, musicButtonY, musicButtonWidth, musicButtonHeight);
-  rect(stopX, stopY, stopWidth, stopHeight);
-
-  // rect(X, Y, Width, Height);
-  // rect();
-  // rect();
+    rect(width*half, height*half, width*quart, height*quart);
+ // rect();
+ // rect();
+ // rect();
 } // End draw
 
 void mousePressed() {
