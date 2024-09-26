@@ -11,7 +11,8 @@ AudioPlayer[] songs = new AudioPlayer[numberOfSongs];
 int currentSongIndex = 0;
 
 int appWidth, appHeight;
-float musicButtonX, musicButtonY, musicButtonWidth, musicButtonHeight;
+float musicButtonDIV_X, musicButtonDIV_Y, musicButtonDIV_Width, musicButtonDIV_Height;
+float musicButtonSquareX, musicButtonSquareY, musicButtonSquareWidth, musicButtonSquareHeight;
 float stopX, stopY, stopWidth, stopHeight;
 
 String musicPath = "MP3s/";
@@ -27,25 +28,38 @@ void setup() {
   size(900, 600);
   appWidth = width;
   appHeight = height;
+
   // button variables
-  musicButtonWidth = appWidth*1/2;
-  musicButtonHeight = appHeight*1/2;
-  musicButtonX = musicButtonWidth - musicButtonWidth*1/2;
-  musicButtonY = musicButtonHeight - musicButtonHeight*1/2;
+  
+  musicButtonDIV_Width = appWidth*1/2;
+  musicButtonDIV_Height = appHeight*1/2;
+  musicButtonDIV_X = musicButtonDIV_Width - musicButtonDIV_Width*1/2;
+  musicButtonDIV_Y = musicButtonDIV_Height - musicButtonDIV_Height*1/2;
+  
+  /*
   if (musicButtonWidth >= musicButtonHeight) {
-    //musicButtonWidth needs to change
-    musicButtonWidth = musicButtonHeight;
+    musicButtonWidth needs to change
+      musicButtonWidth = musicButtonHeight;
   } else {
     musicButtonHeight = musicButtonWidth;
   }
+  */
+  /*
+  musicButtonSquareX = ;
+  musicButtonSquareY = ;
+  musicButtonSquareWidth = ;
+  musicButtonSquareHeight = ;
+  */
+  
+  
   float padding = 1.0/4.0;
   float stopButtonSize = 1.0-(1.0/4.0);
-  
-  stopWidth = musicButtonWidth*stopButtonSize; 
-  stopHeight = musicButtonHeight*stopButtonSize;
 
-  stopX = musicButtonX+=padding;
-  stopY = musicButtonY+=padding; 
+  stopWidth = musicButtonDIV_Width*stopButtonSize;
+  stopHeight = musicButtonDIV_Height*stopButtonSize;
+
+  stopX = musicButtonDIV_X+padding;
+  stopY = musicButtonDIV_Y+padding;
 
   minim = new Minim(this);
 
@@ -69,7 +83,8 @@ void draw() {
   textSize(32);
   text("Now Playing: " + musicNames[currentSongIndex], 50, height / 2);
   text("Press SPACE to switch songs", 50, height / 2 + 40);
-  rect(musicButtonX, musicButtonY, musicButtonWidth, musicButtonHeight);
+  rect(musicButtonDIV_X, musicButtonDIV_Y, musicButtonDIV_Width, musicButtonDIV_Height);
+  rect(musicButtonSquareX, musicButtonSquareY, musicButtonSquareWidth, musicButtonSquareHeight);
   rect(stopX, stopY, stopWidth, stopHeight);
 
   // rect(X, Y, Width, Height);
