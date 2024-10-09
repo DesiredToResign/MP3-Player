@@ -18,7 +18,8 @@ String[] musicNames = {
   "three"
 };
 
-PImage photo;
+PImage playbutton;
+PImage stopbutton;
 
 int appWidth, appHeight;
 //CAUTION: IF Statement Variable Population
@@ -67,7 +68,8 @@ void setup() {
     songs[i] = minim.loadFile(musicPath + musicNames[i] + mp3FileName);
   }
 
-  photo = loadImage("../../../../Case_Studies/playbutton.jpg");
+  playbutton = loadImage("../../../../Case_Studies/playbutton.jpg");
+  stopbutton = loadImage("../../../../Case_Studies/stopbutton.jpg");
   // songs[currentSongIndex].play();
 } // End Setup
 
@@ -93,7 +95,7 @@ void draw() {
   text("Now Playing: " + musicNames[currentSongIndex], 10, height / 8);
   text("Press SPACE to switch songs", 10, height / 8 + 40);
 
-  image(photo, 50, height/ 2 - 100);
+  image(playbutton, 50, height/ 2 - 100);
 } // End draw
 
 void mousePressed() {
