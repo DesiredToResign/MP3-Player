@@ -80,6 +80,11 @@ void draw() {
   color red = #FC0000;
   background(100);
   fill(0);
+  if ( mouseX>musicButtonSquareX && mouseX<musicButtonSquareX+musicButtonSquareWidth && mouseY>musicButtonSquareY && mouseY<musicButtonSquareY+musicButtonSquareHeight ) {
+    fill(255);
+  } else {
+    fill(0);
+  }
   rect( musicButtonSquareX, musicButtonSquareY, musicButtonSquareWidth, musicButtonSquareHeight );
   fill(red);
   textSize(32);
@@ -87,8 +92,8 @@ void draw() {
   fill(255);
   text("Now Playing: " + musicNames[currentSongIndex], 10, height / 8);
   text("Press SPACE to switch songs", 10, height / 8 + 40);
-  
-  image(photo, 100, height / 4);
+
+  image(photo, 50, height/ 2 - 100);
 } // End draw
 
 void mousePressed() {
