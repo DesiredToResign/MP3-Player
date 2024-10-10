@@ -1,3 +1,5 @@
+//© Copyright all rights reserved Desired01 2024 ©//
+
 import ddf.minim.*;
 import ddf.minim.analysis.*;
 import ddf.minim.effects.*;
@@ -11,7 +13,7 @@ int numberOfSongs = 3;
 AudioPlayer[] songs = new AudioPlayer[numberOfSongs];
 int currentSongIndex = 0;
 
-String musicPath = "MP3s/";
+String musicPath = "../../../../MP3s/";
 String mp3FileName = ".mp3";
 String[] musicNames = {
   "one",
@@ -20,7 +22,7 @@ String[] musicNames = {
 };
 
 PImage playbutton;
-PImage stopbutton;
+PImage pausebutton;
 
 int appWidth, appHeight;
 //CAUTION: IF Statement Variable Population
@@ -70,8 +72,8 @@ void setup() {
   }
 
   playbutton = loadImage("../../../../Case_Studies/playbutton.jpg");
-  stopbutton = loadImage("../../../../Case_Studies/stopbutton.jpg");
-  // songs[currentSongIndex].play();
+  pausebutton = loadImage("../../../../Case_Studies/pausebutton.jpg");
+  songs[currentSongIndex].play();
 } // End Setup
 
 void draw() {
@@ -81,7 +83,7 @@ void draw() {
     "three"
   };
   color red = #FC0000;
-  background(100);
+  background(150, 0, 0);
   fill(0);
   if ( mouseX>musicButtonSquareX && mouseX<musicButtonSquareX+musicButtonSquareWidth && mouseY>musicButtonSquareY && mouseY<musicButtonSquareY+musicButtonSquareHeight ) {
     fill(255);
@@ -93,23 +95,25 @@ void draw() {
   textSize(32);
   rect( stopX, stopY, stopWidth, stopHeight );
   fill(255);
-  text("Now Playing: " + musicNames[currentSongIndex], 10, height / 8);
-  text("Press SPACE to switch songs", 10, height / 8 + 40);
+  text("Now Playing: " + musicNames[currentSongIndex], width / 4 + 100, height / 8);
+  text("Press SPACE to switch songs", width / 4 + 50, height / 8 + 40);
 
   image(playbutton, 50, height/ 2 - 100);
+  image(pausebutton, width / 2 + 200, height/ 2 - 120);
 } // End draw
 
 void mousePressed() {
 } // End mousePressed
 
 void keyPressed() {
-  /*
-  if (key == ' ') {
-   for (AudioPlayer song : songs) {
-   song.close();
+  //song skip below
+  if (key == ' ' || key == ' ') {
+   if (songs[currentSongIndex].isPlaying()) {
+     songs[currentSongIndex].pause();
+     songs[currentSongIndex].rewind();
    }
    currentSongIndex = (currentSongIndex + 1) % numberOfSongs;
-   // not playing for some reason (cant find track?) // songs[currentSongIndex].play();
+   songs[currentSongIndex].play();
    }
-   */
+   //end song skip
 } // End keyPressed
