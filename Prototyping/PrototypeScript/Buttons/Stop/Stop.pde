@@ -5,6 +5,7 @@ import ddf.minim.signals.*;
 import ddf.minim.spi.*;
 import ddf.minim.ugens.*;
 
+//global varis
 Minim minim;
 int numberOfSongs = 3;
 AudioPlayer[] songs = new AudioPlayer[numberOfSongs];
