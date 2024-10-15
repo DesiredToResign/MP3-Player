@@ -20,6 +20,11 @@ String[] musicNames = {
   "two",
   "three"
 };
+String[] actualMusicNames = {
+  "Never Gonna Give You Up",
+  "Space",
+  "Groove"
+};
 
 PImage playbutton;
 PImage pausebutton;
@@ -29,6 +34,15 @@ int appWidth, appHeight;
 float musicButtonDIV_X, musicButtonDIV_Y, musicButtonDIV_Width, musicButtonDIV_Height;
 float musicButtonSquareX, musicButtonSquareY, musicButtonSquareWidth, musicButtonSquareHeight;
 float stopX, stopY, stopWidth, stopHeight;
+
+color red=#FC0000, white=#FFFFFF, black=#000000, gray=#717070, backgroundRed=#AD0000;
+color dayForeground=white, dayHoverover=black, dayBackground=backgroundRed;
+color darkForeground=black, darkHoverover=white, darkBackground=backgroundRed;
+color nightForeground=black, nightHoverover=white, nightBackground=black;
+color appColorForeground, appColorHoverover, appColorBackground;
+color stopButtonHoverOver;
+
+Boolean colorDayMode=true, colorDarkMode=false, colorNightMode=false;
 
 // Global Variables
 void setup() {
@@ -74,32 +88,44 @@ void setup() {
   playbutton = loadImage("../../../../Case_Studies/playbutton.jpg");
   pausebutton = loadImage("../../../../Case_Studies/pausebutton.jpg");
   songs[currentSongIndex].play();
+
+
+  if (hour()<=7 || hour()>17) {
+    //nightmode
+    appColorForeground = nightForeground;
+    appColorHoverover = nightHoverover;
+    appColorBackground = nightBackground;
+  } else if (hour()>7 || hour()<17) {
+    //daymode
+    appColorForeground = dayForeground;
+    appColorHoverover = dayHoverover;
+    appColorBackground = dayBackground;
+  } else {
+    //darkmode
+    appColorForeground = darkForeground;
+    appColorHoverover = darkHoverover;
+    appColorBackground = darkBackground;
+  }
 } // End Setup
 
 void draw() {
-  String[] musicNames = {
-    "one",
-    "two",
-    "three"
-  };
-  color red = #FC0000;
-  background(150, 0, 0);
+  background(appColorBackground);
   fill(0);
   if ( mouseX>musicButtonSquareX && mouseX<musicButtonSquareX+musicButtonSquareWidth && mouseY>musicButtonSquareY && mouseY<musicButtonSquareY+musicButtonSquareHeight ) {
-    fill(255);
+    fill(appColorForeground);
   } else {
-    fill(0);
+    fill(appColorHoverover);
   }
   rect( musicButtonSquareX, musicButtonSquareY, musicButtonSquareWidth, musicButtonSquareHeight );
-  fill(red);
+  fill(appColorBackground);
   textSize(32);
   rect( stopX, stopY, stopWidth, stopHeight );
-  fill(255);
-  text("Now Playing: " + musicNames[currentSongIndex], width / 4 + 100, height / 8);
-  text("Press SPACE to switch songs", width / 4 + 50, height / 8 + 40);
+  fill(appColorForeground);
+  text("Now Playing: " + actualMusicNames[currentSongIndex], 40, height / 8);
+  text("Press 'P' to switch songs", 40, height / 8 + 40);
 
-  image(playbutton, 50, height/ 2 - 100);
-  image(pausebutton, width / 2 + 200, height/ 2 - 120);
+  // image(playbutton, 50, height/ 2 - 100);
+  // image(pausebutton, width / 2 + 200, height/ 2 - 120);
 } // End draw
 
 void mousePressed() {
@@ -107,13 +133,26 @@ void mousePressed() {
 
 void keyPressed() {
   //song skip below
-  if (key == ' ' || key == ' ') {
-   if (songs[currentSongIndex].isPlaying()) {
-     songs[currentSongIndex].pause();
-     songs[currentSongIndex].rewind();
-   }
-   currentSongIndex = (currentSongIndex + 1) % numberOfSongs;
-   songs[currentSongIndex].play();
-   }
-   //end song skip
-} // End keyPressed
+  if (key == 'P' || key == 'p') {
+    if (songs[currentSongIndex].isPlaying()) {
+      songs[currentSongIndex].pause();
+      songs[currentSongIndex].rewind();
+    }
+    currentSongIndex = (currentSongIndex + 1) % numberOfSongs;
+    songs[currentSongIndex].play();
+  }
+  //end song skip
+
+  //toggle mode
+  if (key == 'M' || key == 'm') {
+    boolean toggle = false;
+    if (toggle == false) {
+      background(0);
+      toggle = true;
+    } else if (toggle == true) {
+      background(180, 0, 0);
+      toggle = false;
+    }
+  }
+}
+// End keyPressed
