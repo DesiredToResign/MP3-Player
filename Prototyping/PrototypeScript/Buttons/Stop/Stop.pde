@@ -42,7 +42,7 @@ color nightForeground=black, nightHoverover=white, nightBackground=black;
 color appColorForeground, appColorHoverover, appColorBackground;
 color stopButtonHoverOver;
 
-Boolean colorDayMode=true, colorDarkMode=false, colorNightMode=false;
+Boolean colorDayMode=false, colorDarkMode=true, colorNightMode=false;
 
 // Global Variables
 void setup() {
@@ -90,12 +90,12 @@ void setup() {
   songs[currentSongIndex].play();
 
 
-  if (hour()<=7 || hour()>17) {
+  if (hour()<=7 || hour()>17 || colorNightMode == true) {
     //nightmode
     appColorForeground = nightForeground;
     appColorHoverover = nightHoverover;
     appColorBackground = nightBackground;
-  } else if (hour()>7 || hour()<17) {
+  } else if (hour()>7 || hour()<17 || colorDayMode == true) {
     //daymode
     appColorForeground = dayForeground;
     appColorHoverover = dayHoverover;
@@ -120,7 +120,7 @@ void draw() {
   fill(appColorBackground);
   textSize(32);
   rect( stopX, stopY, stopWidth, stopHeight );
-  fill(appColorForeground);
+  fill(255);
   text("Now Playing: " + actualMusicNames[currentSongIndex], 40, height / 8);
   text("Press 'P' to switch songs", 40, height / 8 + 40);
 
