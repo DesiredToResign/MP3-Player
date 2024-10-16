@@ -13,7 +13,7 @@ int numberOfSongs = 3;
 AudioPlayer[] songs = new AudioPlayer[numberOfSongs];
 int currentSongIndex = 0;
 
-String musicPath = "../../MP3s/";
+String musicPath = "../../../../MP3s/";
 String mp3FileName = ".mp3";
 String[] musicNames = {
   "one",
@@ -42,7 +42,7 @@ color nightForeground=black, nightHoverover=white, nightBackground=black;
 color appColorForeground, appColorHoverover, appColorBackground;
 color stopButtonHoverOver;
 
-Boolean colorDayMode=false, colorDarkMode=false, colorNightMode=false;
+Boolean colorDayMode=false, colorDarkMode=true, colorNightMode=false;
 
 // Global Variables
 void setup() {
@@ -85,17 +85,17 @@ void setup() {
     songs[i] = minim.loadFile(musicPath + musicNames[i] + mp3FileName);
   }
 
-  playbutton = loadImage("../../Case_Studies/playbutton.jpg");
-  pausebutton = loadImage("../../Case_Studies/pausebutton.jpg");
+  playbutton = loadImage("../../../../Case_Studies/playbutton.jpg");
+  pausebutton = loadImage("../../../../Case_Studies/pausebutton.jpg");
   songs[currentSongIndex].play();
 
 
-  if (colorNightMode == true && hour()<=7 || hour()>17) {
+  if (hour()<=7 || hour()>17 || colorNightMode == true) {
     //nightmode
     appColorForeground = nightForeground;
     appColorHoverover = nightHoverover;
     appColorBackground = nightBackground;
-  } else if (colorDayMode == true && hour()>7 || hour()<17) {
+  } else if (hour()>7 || hour()<17 || colorDayMode == true) {
     //daymode
     appColorForeground = dayForeground;
     appColorHoverover = dayHoverover;
@@ -142,5 +142,17 @@ void keyPressed() {
     songs[currentSongIndex].play();
   }
   //end song skip
+
+  //toggle mode
+  if (key == 'M' || key == 'm') {
+    boolean toggle = false;
+    if (toggle == false) {
+      background(0);
+      toggle = true;
+    } else if (toggle == true) {
+      background(180, 0, 0);
+      toggle = false;
+    }
+  }
 }
 // End keyPressed
