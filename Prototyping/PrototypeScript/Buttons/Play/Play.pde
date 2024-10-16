@@ -42,7 +42,9 @@ color nightForeground=black, nightHoverover=white, nightBackground=black;
 color appColorForeground, appColorHoverover, appColorBackground;
 color stopButtonHoverOver;
 
-Boolean colorDayMode=false, colorDarkMode=true, colorNightMode=false;
+Boolean colorDayMode=false, colorDarkMode=false, colorNightMode=false;
+
+float playButton1X, playButton1Y, playButton2X, playButton2Y, playButton3X, playButton3Y;
 
 // Global Variables
 void setup() {
@@ -79,6 +81,13 @@ void setup() {
   stopHeight = musicButtonSquareHeight*1/2;
   stopX = musicButtonSquareX + musicButtonSquareWidth*1/4;
   stopY = musicButtonSquareY + musicButtonSquareHeight*1/4;
+
+  playButton1X = musicButtonSquareX + musicButtonSquareWidth*1/4;
+  playButton1Y = musicButtonSquareY + musicButtonSquareHeight*1/4;
+  playButton2X = musicButtonSquareX + musicButtonSquareWidth*3/4;
+  playButton2Y = musicButtonSquareY + musicButtonSquareHeight*1/2;
+  playButton3X = musicButtonSquareX + musicButtonSquareWidth*1/4;
+  playButton3Y = musicButtonSquareY + musicButtonSquareHeight*3/4;
 
   // Load Music
   for (int i = 0; i < numberOfSongs; i++) {
@@ -119,40 +128,26 @@ void draw() {
   rect( musicButtonSquareX, musicButtonSquareY, musicButtonSquareWidth, musicButtonSquareHeight );
   fill(appColorBackground);
   textSize(32);
-  rect( stopX, stopY, stopWidth, stopHeight );
+  triangle(playButton1X, playButton1Y, playButton2X, playButton2Y, playButton3X, playButton3Y);
   fill(255);
   text("Now Playing: " + actualMusicNames[currentSongIndex], 40, height / 8);
-  text("Press 'P' to switch songs", 40, height / 8 + 40);
+  text("Press the Play Button to switch songs", 40, height / 8 + 40);
 
   // image(playbutton, 50, height/ 2 - 100);
   // image(pausebutton, width / 2 + 200, height/ 2 - 120);
 } // End draw
 
 void mousePressed() {
-} // End mousePressed
-
-void keyPressed() {
-  //song skip below
-  if (key == 'P' || key == 'p') {
+  if ( mouseX>musicButtonSquareX && mouseX<musicButtonSquareX+musicButtonSquareWidth && mouseY>musicButtonSquareY && mouseY<musicButtonSquareY+musicButtonSquareHeight ) {
     if (songs[currentSongIndex].isPlaying()) {
       songs[currentSongIndex].pause();
       songs[currentSongIndex].rewind();
     }
     currentSongIndex = (currentSongIndex + 1) % numberOfSongs;
     songs[currentSongIndex].play();
-  }
-  //end song skip
+  } // End mousePressed
+}
 
-  //toggle mode
-  if (key == 'M' || key == 'm') {
-    boolean toggle = false;
-    if (toggle == false) {
-      background(0);
-      toggle = true;
-    } else if (toggle == true) {
-      background(180, 0, 0);
-      toggle = false;
-    }
-  }
+void keyPressed() {
 }
 // End keyPressed
