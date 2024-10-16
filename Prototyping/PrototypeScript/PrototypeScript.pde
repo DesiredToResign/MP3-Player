@@ -13,7 +13,7 @@ int numberOfSongs = 3;
 AudioPlayer[] songs = new AudioPlayer[numberOfSongs];
 int currentSongIndex = 0;
 
-String musicPath = "../../../../MP3s/";
+String musicPath = "../../MP3s/";
 String mp3FileName = ".mp3";
 String[] musicNames = {
   "one",
@@ -42,7 +42,7 @@ color nightForeground=black, nightHoverover=white, nightBackground=black;
 color appColorForeground, appColorHoverover, appColorBackground;
 color stopButtonHoverOver;
 
-Boolean colorDayMode=false, colorDarkMode=true, colorNightMode=false;
+Boolean colorDayMode=false, colorDarkMode=false, colorNightMode=false;
 
 // Global Variables
 void setup() {
@@ -85,8 +85,8 @@ void setup() {
     songs[i] = minim.loadFile(musicPath + musicNames[i] + mp3FileName);
   }
 
-  playbutton = loadImage("../../../../Case_Studies/playbutton.jpg");
-  pausebutton = loadImage("../../../../Case_Studies/pausebutton.jpg");
+  playbutton = loadImage("../../Case_Studies/playbutton.jpg");
+  pausebutton = loadImage("../../Case_Studies/pausebutton.jpg");
   songs[currentSongIndex].play();
 
 
