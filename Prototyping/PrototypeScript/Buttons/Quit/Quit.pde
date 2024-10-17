@@ -119,7 +119,8 @@ void draw() {
   rect( musicButtonSquareX, musicButtonSquareY, musicButtonSquareWidth, musicButtonSquareHeight );
   fill(appColorBackground);
   textSize(32);
-  rect( stopX, stopY, stopWidth, stopHeight );
+  line();
+  line();
   fill(255);
   text("Now Playing: " + actualMusicNames[currentSongIndex], 40, height / 8);
   text("Press 'P' to switch songs", 40, height / 8 + 40);
@@ -142,17 +143,5 @@ void keyPressed() {
     songs[currentSongIndex].play();
   }
   //end song skip
-
-  //toggle mode
-  if (key == 'M' || key == 'm') {
-    boolean toggle = false;
-    if (toggle == false) {
-      background(0);
-      toggle = true;
-    } else if (toggle == true) {
-      background(180, 0, 0);
-      toggle = false;
-    }
-  }
 }
 // End keyPressed
