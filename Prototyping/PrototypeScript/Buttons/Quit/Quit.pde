@@ -6,6 +6,7 @@ import ddf.minim.effects.*;
 import ddf.minim.signals.*;
 import ddf.minim.spi.*;
 import ddf.minim.ugens.*;
+import System.*;
 
 //global varis
 Minim minim;
@@ -34,6 +35,19 @@ int appWidth, appHeight;
 float musicButtonDIV_X, musicButtonDIV_Y, musicButtonDIV_Width, musicButtonDIV_Height;
 float musicButtonSquareX, musicButtonSquareY, musicButtonSquareWidth, musicButtonSquareHeight;
 float stopX, stopY, stopWidth, stopHeight;
+
+float quitThicknessLine = (musicButtonSquareWidth / musicButtonSquareWidth) + musicButtonSquareWidth*1/4*1/2;
+
+quitX1 = stopX;
+quitY1 = stopY;
+quitButtonX2 = stopX+stopWidth;
+quitButtonY2 = stopX+stopHeight;
+/*
+quitX3 = ;
+quitY3 = ;
+quitX4 = ;
+quitY4 = ;
+*/
 
 color red=#FC0000, white=#FFFFFF, black=#000000, gray=#717070, backgroundRed=#AD0000;
 color dayForeground=white, dayHoverover=black, dayBackground=backgroundRed;
@@ -87,7 +101,7 @@ void setup() {
 
   playbutton = loadImage("../../../../Case_Studies/playbutton.jpg");
   pausebutton = loadImage("../../../../Case_Studies/pausebutton.jpg");
-  songs[currentSongIndex].play();
+  //songs[currentSongIndex].play();
 
 
   if (hour()<=7 || hour()>17 || colorNightMode == true) {
@@ -119,8 +133,9 @@ void draw() {
   rect( musicButtonSquareX, musicButtonSquareY, musicButtonSquareWidth, musicButtonSquareHeight );
   fill(appColorBackground);
   textSize(32);
-  line();
-  line();
+  strokeWeight(quitThicknessLine);
+  line(quitX1, quitY1, quitX2, quitY2);
+  line(quitX3, quitY3, quitX4, quitY4);
   fill(255);
   text("Now Playing: " + actualMusicNames[currentSongIndex], 40, height / 8);
   text("Press 'P' to switch songs", 40, height / 8 + 40);
