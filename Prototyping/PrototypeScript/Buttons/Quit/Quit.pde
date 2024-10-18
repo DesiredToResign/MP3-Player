@@ -6,7 +6,6 @@ import ddf.minim.effects.*;
 import ddf.minim.signals.*;
 import ddf.minim.spi.*;
 import ddf.minim.ugens.*;
-import System.*;
 
 //global varis
 Minim minim;
@@ -36,27 +35,19 @@ float musicButtonDIV_X, musicButtonDIV_Y, musicButtonDIV_Width, musicButtonDIV_H
 float musicButtonSquareX, musicButtonSquareY, musicButtonSquareWidth, musicButtonSquareHeight;
 float stopX, stopY, stopWidth, stopHeight;
 
-float quitThicknessLine = (musicButtonSquareWidth / musicButtonSquareWidth) + musicButtonSquareWidth*1/4*1/2;
+float quitButtonX1, quitButtonY1, quitButtonX2, quitButtonY2;
+float quitButtonX3, quitButtonY3, quitButtonX4, quitButtonY4;
 
-quitX1 = stopX;
-quitY1 = stopY;
-quitButtonX2 = stopX+stopWidth;
-quitButtonY2 = stopX+stopHeight;
-/*
-quitX3 = ;
-quitY3 = ;
-quitX4 = ;
-quitY4 = ;
-*/
+float quitThicknessLine;
 
 color red=#FC0000, white=#FFFFFF, black=#000000, gray=#717070, backgroundRed=#AD0000;
-color dayForeground=white, dayHoverover=black, dayBackground=backgroundRed;
+color dayForeground=white, dayHoverover=white, dayBackground=backgroundRed;
 color darkForeground=black, darkHoverover=white, darkBackground=backgroundRed;
-color nightForeground=black, nightHoverover=white, nightBackground=black;
+color nightForeground=white, nightHoverover=white, nightBackground=black;
 color appColorForeground, appColorHoverover, appColorBackground;
-color stopButtonHoverOver;
+color stopButtonHoverOver, quitButtonLineColour;
 
-Boolean colorDayMode=false, colorDarkMode=true, colorNightMode=false;
+Boolean colorDayMode=false, colorDarkMode=false, colorNightMode=false;
 
 // Global Variables
 void setup() {
@@ -94,6 +85,18 @@ void setup() {
   stopX = musicButtonSquareX + musicButtonSquareWidth*1/4;
   stopY = musicButtonSquareY + musicButtonSquareHeight*1/4;
 
+  quitThicknessLine = (musicButtonSquareWidth / musicButtonSquareWidth ) + musicButtonSquareWidth*1/4*1/2;
+
+  quitButtonX1 = stopX;
+  quitButtonY1 = stopY;
+  quitButtonX2 = stopX+stopWidth;
+  quitButtonY2 = stopY+stopHeight;
+
+  quitButtonX3 = quitButtonX2;
+  quitButtonY3 = quitButtonY1;
+  quitButtonX4 = quitButtonX1;
+  quitButtonY4 = quitButtonY2;
+
   // Load Music
   for (int i = 0; i < numberOfSongs; i++) {
     songs[i] = minim.loadFile(musicPath + musicNames[i] + mp3FileName);
@@ -126,16 +129,20 @@ void draw() {
   background(appColorBackground);
   fill(0);
   if ( mouseX>musicButtonSquareX && mouseX<musicButtonSquareX+musicButtonSquareWidth && mouseY>musicButtonSquareY && mouseY<musicButtonSquareY+musicButtonSquareHeight ) {
-    fill(appColorForeground);
+    stopButtonHoverOver = appColorBackground;
+    quitButtonLineColour = appColorHoverover;
   } else {
-    fill(appColorHoverover);
+    stopButtonHoverOver = appColorForeground;
+    quitButtonLineColour = appColorBackground;
   }
+  noStroke();
+  fill(stopButtonHoverOver);
   rect( musicButtonSquareX, musicButtonSquareY, musicButtonSquareWidth, musicButtonSquareHeight );
-  fill(appColorBackground);
   textSize(32);
+  stroke(quitButtonLineColour);
   strokeWeight(quitThicknessLine);
-  line(quitX1, quitY1, quitX2, quitY2);
-  line(quitX3, quitY3, quitX4, quitY4);
+  line( quitButtonX1, quitButtonY1, quitButtonX2, quitButtonY2 );
+  line( quitButtonX3, quitButtonY3, quitButtonX4, quitButtonY4 );
   fill(255);
   text("Now Playing: " + actualMusicNames[currentSongIndex], 40, height / 8);
   text("Press 'P' to switch songs", 40, height / 8 + 40);
