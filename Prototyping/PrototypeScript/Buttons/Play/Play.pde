@@ -153,8 +153,20 @@ void keyPressed() {
   if (key == 'K' || key == 'k' ) songs[currentSongIndex].loop(); // loop forever
   if (key == 'F' || key == 'f' ) songs[currentSongIndex].skip(1000); // fast forward
   if (key == 'R' || key == 'r' ) songs[currentSongIndex].skip(-1000); // fast rewind
-  if (key == 'M' || key == 'm' ) ; // mute
-  if (key == 'O' || key == 'o' ) ; // pause
+  if (key == 'M' || key == 'm' ) {
+    if (songs[currentSongIndex].isMuted()) {
+      songs[currentSongIndex].unmute();
+    } else {
+      songs[currentSongIndex].mute();
+    };
+  }; // mute
+  if (key == 'O' || key == 'o' ) {
+    if (songs[currentSongIndex].isPlaying()) {
+      songs[currentSongIndex].pause();
+    } else {
+      songs[currentSongIndex].play();
+    };
+  }; // pause
   //if (key == CODED || keyCode == 'ESC' ) ; // quit
   if (key == ' ' || key == ' ' ) ; // next
   if (key == ' ' || key == ' ' ) ; // previous
