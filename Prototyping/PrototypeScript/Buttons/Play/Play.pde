@@ -149,5 +149,16 @@ void mousePressed() {
 }
 
 void keyPressed() {
+  if (key == 'L' || key == 'l' ) songs[currentSongIndex].loop(1); // loop once
+  if (key == 'K' || key == 'k' ) songs[currentSongIndex].loop(); // loop forever
+  if (key == 'F' || key == 'f' ) songs[currentSongIndex].skip(1000); // fast forward
+  if (key == 'R' || key == 'r' ) songs[currentSongIndex].skip(-1000); // fast rewind
+  if (key == 'M' || key == 'm' ) ; // mute
+  if (key == 'O' || key == 'o' ) ; // pause
+  //if (key == CODED || keyCode == 'ESC' ) ; // quit
+  if (key == ' ' || key == ' ' ) ; // next
+  if (key == ' ' || key == ' ' ) ; // previous
+  if (key == ' ' || key == ' ' ) ; // shuffle - play (random)
+  if (key == ' ' || key == ' ' ) ; // play-pause-stop
 }
 // End keyPressed
