@@ -167,7 +167,7 @@ void keyPressed() {
       songs[currentSongIndex].play();
     };
   }; // pause
-  //if (key == CODED || keyCode == 'ESC' ) ; // quit
+  if (key == CODED || keyCode == ESC || key == 'Q' || key == 'q') exit(); // quit
   if (key == ' ' || key == ' ' ) ; // next
   if (key == ' ' || key == ' ' ) ; // previous
   if (key == ' ' || key == ' ' ) ; // shuffle - play (random)
