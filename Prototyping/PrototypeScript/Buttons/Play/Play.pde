@@ -180,7 +180,19 @@ void keyPressed() {
       println(actualMusicNames[currentSongIndex]);
     };
   }; // next
-  if (key == ' ' || key == ' ' ) ; // previous
+  if (key == 'P' || key == 'p' ) {
+        if (songs[currentSongIndex].isPlaying()) {
+      songs[currentSongIndex].pause();
+      songs[currentSongIndex].rewind();
+      currentSongIndex = (currentSongIndex - 1) % numberOfSongs;
+      println(actualMusicNames[currentSongIndex]);
+      songs[currentSongIndex].play();
+    } else {
+      songs[currentSongIndex].rewind();
+      currentSongIndex = (currentSongIndex - 1) % numberOfSongs;
+      println(actualMusicNames[currentSongIndex]);
+    };
+  }; // previous
   if (key == ' ' || key == ' ' ) ; // shuffle - play (random)
   if (key == ' ' || key == ' ' ) ; // play-pause-stop
 }
