@@ -96,8 +96,8 @@ void setup() {
 
   playbutton = loadImage("../../../../Case_Studies/playbutton.jpg");
   pausebutton = loadImage("../../../../Case_Studies/pausebutton.jpg");
+  
   songs[currentSongIndex].play();
-
 
   if (hour()<=7 || hour()>17 || colorNightMode == true) {
     //nightmode
@@ -131,7 +131,7 @@ void draw() {
   triangle(playButton1X, playButton1Y, playButton2X, playButton2Y, playButton3X, playButton3Y);
   fill(255);
   text("Now Playing: " + actualMusicNames[currentSongIndex], 40, height / 8);
-  text("Press the Play Button to switch songs", 40, height / 8 + 40);
+  text("Press the Play Button to pause/play songs", 40, height / 8 + 40);
 
   // image(playbutton, 50, height/ 2 - 100);
   // image(pausebutton, width / 2 + 200, height/ 2 - 120);
@@ -141,10 +141,9 @@ void mousePressed() {
   if ( mouseX>musicButtonSquareX && mouseX<musicButtonSquareX+musicButtonSquareWidth && mouseY>musicButtonSquareY && mouseY<musicButtonSquareY+musicButtonSquareHeight ) {
     if (songs[currentSongIndex].isPlaying()) {
       songs[currentSongIndex].pause();
-      songs[currentSongIndex].rewind();
-    }
-    currentSongIndex = (currentSongIndex + 1) % numberOfSongs;
-    songs[currentSongIndex].play();
+    } else {
+      songs[currentSongIndex].play();
+    };
   } // End mousePressed
 }
 
@@ -168,7 +167,19 @@ void keyPressed() {
     };
   }; // pause
   if (key == CODED || keyCode == ESC || key == 'Q' || key == 'q') exit(); // quit
-  if (key == ' ' || key == ' ' ) ; // next
+  if (key == 'N' || key == 'n' ) {
+    if (songs[currentSongIndex].isPlaying()) {
+      songs[currentSongIndex].pause();
+      songs[currentSongIndex].rewind();
+      currentSongIndex = (currentSongIndex + 1) % numberOfSongs;
+      println(actualMusicNames[currentSongIndex]);
+      songs[currentSongIndex].play();
+    } else {
+      songs[currentSongIndex].rewind();
+      currentSongIndex = (currentSongIndex + 1) % numberOfSongs;
+      println(actualMusicNames[currentSongIndex]);
+    };
+  }; // next
   if (key == ' ' || key == ' ' ) ; // previous
   if (key == ' ' || key == ' ' ) ; // shuffle - play (random)
   if (key == ' ' || key == ' ' ) ; // play-pause-stop
