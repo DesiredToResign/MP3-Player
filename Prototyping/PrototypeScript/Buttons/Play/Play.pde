@@ -96,7 +96,7 @@ void setup() {
 
   playbutton = loadImage("../../../../Case_Studies/playbutton.jpg");
   pausebutton = loadImage("../../../../Case_Studies/pausebutton.jpg");
-  
+
   songs[currentSongIndex].play();
 
   if (hour()<=7 || hour()>17 || colorNightMode == true) {
@@ -181,7 +181,7 @@ void keyPressed() {
     };
   }; // next
   if (key == 'P' || key == 'p' ) {
-        if (songs[currentSongIndex].isPlaying()) {
+    if (songs[currentSongIndex].isPlaying()) {
       songs[currentSongIndex].pause();
       songs[currentSongIndex].rewind();
       currentSongIndex = (currentSongIndex - 1) % numberOfSongs;
