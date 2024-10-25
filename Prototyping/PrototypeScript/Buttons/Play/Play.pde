@@ -185,11 +185,17 @@ void keyPressed() {
       songs[currentSongIndex].pause();
       songs[currentSongIndex].rewind();
       currentSongIndex = (currentSongIndex - 1) % numberOfSongs;
+      if (currentSongIndex <= -1) {
+        currentSongIndex = (currentSongIndex + numberOfSongs) % numberOfSongs;
+      }
       println(actualMusicNames[currentSongIndex]);
       songs[currentSongIndex].play();
     } else {
       songs[currentSongIndex].rewind();
       currentSongIndex = (currentSongIndex - 1) % numberOfSongs;
+      if (currentSongIndex <= -1) {
+        currentSongIndex = (currentSongIndex + numberOfSongs) % numberOfSongs;
+      }
       println(actualMusicNames[currentSongIndex]);
     };
   }; // previous
