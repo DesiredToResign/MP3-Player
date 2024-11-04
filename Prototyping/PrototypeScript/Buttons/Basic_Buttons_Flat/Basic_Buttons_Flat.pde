@@ -38,36 +38,34 @@ void setup() {
 
   //population
 
-  if (musicButtonDIV_Width >= musicButtonDIV_Height) { //landscape
-    float padding1 = musicButtonDIV_Height - musicButtonDIV_Width;
-    float padding2 = padding1*1/2;
-
-    musicButtonSquareWidth = musicButtonDIV_Width;
-    musicButtonSquareHeight = musicButtonDIV_Width;
-
-    musicButtonSquareX = musicButtonDIV_X;
-    musicButtonSquareY = musicButtonDIV_Y + padding2;
-  } else { //portrait
-    float padding1 = musicButtonDIV_Width - musicButtonDIV_Height;
-    float padding2 = padding1*1/2;
-
-    musicButtonSquareWidth = musicButtonDIV_Height;
-    musicButtonSquareHeight = musicButtonDIV_Height;
-
-    musicButtonSquareX = musicButtonDIV_X + padding2;
+  if ( musicButtonDIV_Width >= musicButtonDIV_Height ) { // Landscape //error: square does not go in the middle
+    // musicButtonWidth needs to change
+    musicButtonSquareWidth = musicButtonDIV_Height ;
+    musicButtonSquareHeight = musicButtonDIV_Height ;
+    float padding1 = musicButtonDIV_Width - musicButtonDIV_Height; //working out value needed, with formulae
+    float padding2 = padding1*1/2; ////working out value needed, with formulae
+    musicButtonSquareX = musicButtonDIV_X + padding2 ; //note: minus moves it the wrong way, difficult to see
     musicButtonSquareY = musicButtonDIV_Y;
+  } else { //Portrait
+    // musicButtonHeight needs to change
+    musicButtonSquareWidth = musicButtonDIV_Width ;
+    musicButtonSquareHeight = musicButtonDIV_Width;
+    float padding1 = musicButtonDIV_Height - musicButtonDIV_Width; //working out value needed, with formulae
+    float padding2 = padding1*1/2; ////working out value needed, with formulae
+    musicButtonSquareX = musicButtonDIV_X; //note: minus moves it the wrong way, difficult to see
+    musicButtonSquareY = musicButtonDIV_Y + padding2;
   }
 
-/*
+  /*
   float padding = 1.0/4.0;
-  float stopButtonSize = 1.0-(1.0/4.0);
-
-  stopWidth = musicButtonDIV_Width*stopButtonSize;
-  stopHeight = musicButtonDIV_Height*stopButtonSize;
-
-  stopX = musicButtonDIV_X+padding;
-  stopY = musicButtonDIV_Y+padding;
-*/
+   float stopButtonSize = 1.0-(1.0/4.0);
+   
+   stopWidth = musicButtonDIV_Width*stopButtonSize;
+   stopHeight = musicButtonDIV_Height*stopButtonSize;
+   
+   stopX = musicButtonDIV_X+padding;
+   stopY = musicButtonDIV_Y+padding;
+   */
   minim = new Minim(this);
 
   // Load Music
@@ -77,7 +75,7 @@ void setup() {
    songs[i] = minim.loadFile(musicPath + musicNames[i] + mp3FileName);
    }
    */
-
+  rect(musicButtonDIV_X, musicButtonDIV_Y, musicButtonDIV_Width, musicButtonDIV_Height);
   // songs[currentSongIndex].play();
 } // End Setup
 
@@ -96,7 +94,6 @@ void draw() {
    text("Now Playing: " + musicNames[currentSongIndex], 50, height / 2);
    text("Press SPACE to switch songs", 50, height / 2 + 40);
    */
-  rect(musicButtonDIV_X, musicButtonDIV_Y, musicButtonDIV_Width, musicButtonDIV_Height);
   rect(musicButtonSquareX, musicButtonSquareY, musicButtonSquareWidth, musicButtonSquareHeight);
   //rect(stopX, stopY, stopWidth, stopHeight);
 

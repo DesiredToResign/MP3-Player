@@ -26,9 +26,6 @@ String[] actualMusicNames = {
   "Groove"
 };
 
-PImage playbutton;
-PImage pausebutton;
-
 int appWidth, appHeight;
 //CAUTION: IF Statement Variable Population
 float musicButtonDIV_X, musicButtonDIV_Y, musicButtonDIV_Width, musicButtonDIV_Height;
@@ -84,9 +81,7 @@ void setup() {
   for (int i = 0; i < numberOfSongs; i++) {
     songs[i] = minim.loadFile(musicPath + musicNames[i] + mp3FileName);
   }
-
-  playbutton = loadImage("../../../../Case_Studies/playbutton.jpg");
-  pausebutton = loadImage("../../../../Case_Studies/pausebutton.jpg");
+  
   songs[currentSongIndex].play();
 
 
