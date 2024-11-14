@@ -13,6 +13,9 @@ int currentSongIndex = 0;
 int appWidth, appHeight;
 float imageDIV_X, imageDIV_Y, imageDIV_Width, imageDIV_Height;
 
+float backgroundImageX, backgroundImageY, backgroundImageWidth, backgroundImageHeight;
+PImage picBackground;
+
 String musicPath = "../MP3s/";
 String mp3FileName = ".mp3";
 String[] musicNames = {
@@ -46,10 +49,18 @@ void setup() {
     songs[i] = minim.loadFile(musicPath + musicNames[i] + mp3FileName);
   }
 
+  backgroundImageX = appWidth*0;
+  backgroundImageY = appHeight*0;
+  backgroundImageWidth = appWidth-1;
+  backgroundImageHeight = appHeight-1;
+  picBackground = loadImage("../Image_Basic_Scaffolding/Square - Baseball/baseball.jpg");
+
   rect(imageDIV_X, imageDIV_Y, imageDIV_Width, imageDIV_Height);
 } // End Setup
 
 void draw() {
+  rect( backgroundImageX, backgroundImageY, backgroundImageWidth, backgroundImageHeight );
+  image( picBackground, backgroundImageX, backgroundImageY, backgroundImageWidth, backgroundImageHeight );
   rect(imageDIV_X, imageDIV_Y, imageDIV_Width, imageDIV_Height);
 } // End draw
 
