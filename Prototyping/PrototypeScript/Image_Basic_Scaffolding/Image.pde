@@ -1,8 +1,10 @@
 //global variables
 int appWidth, appHeight;
 float backgroundImageX, backgroundImageY, backgroundImageWidth, backgroundImageHeight;
-float bikeX, bikeY, bikeWidth, bikeHeight;
-PImage picBackground;
+float batX, batY, batWidth, batHeight;
+PImage picBackground, picBat;
+int picBatWidthChanged, picBatHeightChanged, picBatWidth, picBatHeight;
+float biggerSide, smallerSide, ratio;
 //
 
 void setup() {
@@ -16,20 +18,37 @@ void setup() {
   backgroundImageWidth = appWidth-1;
   backgroundImageHeight = appHeight-1;
   picBackground = loadImage("Square - Baseball/baseball.jpg");
-  bikeX = appWidth;
-  bikeY = appHeight;
-  bikeWidth = appWidth;
-  bikeHeight = appHeight;
+  picBat = loadImage("Square - Bat/bat.jpg");
+  picBatWidthChanged = picBatWidth = 1961;
+  picBatHeightChanged = picBatHeight = 2560;
+  batX = appWidth * 1/4;
+  batY = appHeight * 1/4;
+  batWidth = appWidth * 1/2;
+  batHeight = appHeight * 1/2;
+  //
+  // le compression
+  biggerSide = (picBatWidth > picBatHeight) ? picBatWidth : picBatHeight;
+  smallerSide = (picBatWidth < picBatHeight) ? picBatWidth : picBatHeight;
+  ratio = biggerSide / smallerSide; //ratio bigger than 1, divide = smaller side, multiply = larger side
+  /*
+  if () {
+    
+  } else {
+  
+  }
+  */
+  println(biggerSide, smallerSide, ratio);
   //
   //DIVs
-    rect( backgroundImageX, backgroundImageY, backgroundImageWidth, backgroundImageHeight );
-    rect(bikeX, bikeY, bikeWidth, bikeHeight);
+  rect( backgroundImageX, backgroundImageY, backgroundImageWidth, backgroundImageHeight );
+  rect(batX, batY, batWidth, batHeight);
   //
   //Draw Image One Time, for testing
 }
 
 void draw() {
-  image( picBackground, backgroundImageX, backgroundImageY, backgroundImageWidth, backgroundImageHeight );
+  //image( picBackground, backgroundImageX, backgroundImageY, backgroundImageWidth, backgroundImageHeight );
+  image(picBat, batX, batY, picBatWidthChanged, picBatHeightChanged);
 }
 
 void mousePressed() {
