@@ -3,12 +3,12 @@ int appWidth, appHeight;
 float backgroundImageX, backgroundImageY, backgroundImageWidth, backgroundImageHeight;
 float batX, batY, batWidth, batHeight;
 PImage picBackground, picBat;
-int picBatWidthChanged, picBatHeightChanged, picBatWidth, picBatHeight;
+float picBatWidthChanged, picBatHeightChanged, picBatWidth, picBatHeight;
 float biggerSide, smallerSide, ratio;
 //
 
 void setup() {
-  size(500, 500); //Landscape
+  size(600, 600); //Landscape
   appWidth = width;
   appHeight = height;
   //
@@ -30,13 +30,15 @@ void setup() {
   biggerSide = (picBatWidth > picBatHeight) ? picBatWidth : picBatHeight;
   smallerSide = (picBatWidth < picBatHeight) ? picBatWidth : picBatHeight;
   ratio = biggerSide / smallerSide; //ratio bigger than 1, divide = smaller side, multiply = larger side
-  /*
-  if () {
-    
+
+  if (batWidth > batHeight) {
+    picBatHeightChanged = batHeight;
+    picBatWidthChanged = (picBatWidth > picBatHeight) ? picBatWidthChanged * ratio : picBatWidthChanged / ratio;
   } else {
-  
+    picBatWidthChanged = batWidth;
+    picBatHeightChanged = (picBatWidth > picBatHeight) ? picBatWidthChanged * ratio : picBatWidthChanged / ratio;
   }
-  */
+
   println(biggerSide, smallerSide, ratio);
   //
   //DIVs
@@ -47,7 +49,7 @@ void setup() {
 }
 
 void draw() {
-  //image( picBackground, backgroundImageX, backgroundImageY, backgroundImageWidth, backgroundImageHeight );
+  image( picBackground, backgroundImageX, backgroundImageY, backgroundImageWidth, backgroundImageHeight );
   image(picBat, batX, batY, picBatWidthChanged, picBatHeightChanged);
 }
 
