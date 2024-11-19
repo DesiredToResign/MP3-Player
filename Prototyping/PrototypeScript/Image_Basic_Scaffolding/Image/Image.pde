@@ -5,6 +5,7 @@ float batX, batY, batWidth, batHeight;
 PImage picBackground, picBat;
 float picBatWidthChanged, picBatHeightChanged, picBatWidth, picBatHeight;
 float biggerSide, smallerSide, ratio;
+Boolean nightMode = false;
 //
 
 void setup() {
@@ -29,7 +30,7 @@ void setup() {
   // le compression
   biggerSide = (picBatWidth > picBatHeight) ? picBatWidth : picBatHeight;
   smallerSide = (picBatWidth < picBatHeight) ? picBatWidth : picBatHeight;
-  ratio = biggerSide / smallerSide; //ratio bigger than 1, divide = smaller side, multiply = larger side
+  ratio = (1 / biggerSide) * smallerSide; //ratio bigger than 1, divide = smaller side, multiply = larger side
 
   if (batWidth > batHeight) {
     picBatHeightChanged = batHeight;
@@ -42,7 +43,8 @@ void setup() {
   println(biggerSide, smallerSide, ratio);
   //
   //DIVs
-  rect( backgroundImageX, backgroundImageY, backgroundImageWidth, backgroundImageHeight );
+  stroke(0);
+  rect(backgroundImageX, backgroundImageY, backgroundImageWidth, backgroundImageHeight);
   rect(batX, batY, batWidth, batHeight);
   //
   //Draw Image One Time, for testing
@@ -54,6 +56,7 @@ void draw() {
 }
 
 void mousePressed() {
+
 }
 
 void keyPressed() {
