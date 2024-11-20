@@ -9,7 +9,7 @@ Boolean nightMode = false;
 //
 
 void setup() {
-  size(600, 600); //Landscape
+  size(500, 500); //Landscape
   appWidth = width;
   appHeight = height;
   //
@@ -30,7 +30,7 @@ void setup() {
   // le compression
   biggerSide = (picBatWidth > picBatHeight) ? picBatWidth : picBatHeight;
   smallerSide = (picBatWidth < picBatHeight) ? picBatWidth : picBatHeight;
-  ratio = (1 / biggerSide) * smallerSide; //ratio bigger than 1, divide = smaller side, multiply = larger side
+  ratio = biggerSide * (1 / smallerSide); //ratio bigger than 1, divide = smaller side, multiply = larger side
 
   if (batWidth > batHeight) {
     picBatHeightChanged = batHeight;
