@@ -10,10 +10,10 @@ float footerX, footerY, footerWidth, footerHeight;
 PFont titleFont, footerFont, phraseFont;
 color red=#690000, resetDefaultInk=#FFFFFF;
 int size;
-String title = "{insert blue grinch}";
+String title = "Cicada 3301", footer = "Society", phrase = "Secret";
 //
 //Display
-size(500, 500);
+size(500, 700);
 appWidth = width;
 appHeight = height;
 titleFont = createFont("Comic Sans MS", 55);
@@ -47,7 +47,7 @@ textFont(titleFont, size);
 text(title, titleX, titleY, titleWidth, titleHeight);
 
 textFont(footerFont, size);
-text(title, footerX, footerY, footerWidth, footerHeight);
+text(footer, footerX, footerY, footerWidth, footerHeight);
 
 textFont(phraseFont, size);
-text(title, textX, textY, textWidth, textHeight);
+text(phrase, textX, textY, textWidth, textHeight);
