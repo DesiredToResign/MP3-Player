@@ -9,7 +9,7 @@ float textX, textY, textWidth, textHeight;
 float footerX, footerY, footerWidth, footerHeight;
 PFont titleFont, footerFont, phraseFont;
 color ink, red=#690000, white=#FFFFFF, resetDefaultInk=white;
-int size, c;
+int size;
 String title = "This is top", footer = "This is bottom", phrase = "This is middle";
 Boolean randomColor = true;
 //
