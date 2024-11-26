@@ -13,6 +13,8 @@ int size;
 String title = "This is top", footer = "This is bottom", phrase = "This is middle";
 Boolean randomColor = true;
 //
+void setup()
+{
   //Display
   size(500, 700);
   appWidth = width;
@@ -38,7 +40,10 @@ Boolean randomColor = true;
   rect(titleX, titleY, titleWidth, titleHeight);
   rect(textX, textY, textWidth, textHeight);
   rect(footerX, footerY, footerWidth, footerHeight);
+} //End Setup
 //
+void draw()
+{
   //Text
   textAlign(CENTER, CENTER);
 
@@ -54,8 +59,24 @@ Boolean randomColor = true;
   textFont(footerFont, size);
   text(footer, footerX, footerY, footerWidth, footerHeight);
 
-  ink = red;
+  ink = (randomColor == true) ? color(random(0, 256), random(256), random(256)) : red;
   fill(ink);
   size = 40;
   textFont(phraseFont, size);
   text(phrase, textX, textY, textWidth, textHeight);
+}
+//
+void mousePressed() {
+} //End MP
+//
+void keyPressed() {
+  if (key == 'M' || key == 'm') {
+    if (randomColor == true) {
+      randomColor = false;
+    } else {
+      randomColor = true;
+    }
+  }
+} //End KP
+//
+//End Main
