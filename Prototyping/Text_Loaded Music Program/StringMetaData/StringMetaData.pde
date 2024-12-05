@@ -70,7 +70,29 @@ void setup() {
 } //End Setup
 //
 void draw() {
-} //End Draw
+  fill(255);
+  // Draw the boxes (already present)
+  rect(metaDataX1, metaDataY1, metaDataWidth1, metaDataHeight1);
+  rect(metaDataX2, metaDataY2, metaDataWidth2, metaDataHeight2);
+  rect(metaDataX3, metaDataY3, metaDataWidth3, metaDataHeight3);
+
+  // Add text to each box
+
+  // Title Box
+  fill(0);
+  textSize(32);
+  textAlign(CENTER, CENTER);
+  text("title of song", metaDataX1 + metaDataWidth1 / 2, metaDataY1 + metaDataHeight1 / 2);
+
+  // Song Position Box
+  textSize(20);
+  textAlign(CENTER, CENTER);
+  text("progress", metaDataX2 + metaDataWidth2 / 2, metaDataY2 + metaDataHeight2 / 2);
+
+  // Time Remaining Box
+  text("time remaining", metaDataX3 + metaDataWidth3 / 2, metaDataY3 + metaDataHeight3 / 2);
+}
+
 //
 void mousePressed() {
 } //End mousePressed
