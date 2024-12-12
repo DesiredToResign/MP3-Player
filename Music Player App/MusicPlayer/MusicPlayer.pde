@@ -1,8 +1,15 @@
 //Library - Minim
 //
 //Global Variables
+int appWidth, appHeight;
 //
-void setup() {} //End setup
+void setup() {
+  fullScreen();
+  appWidth = width;
+  appHeight = height;
+  
+  
+} //End setup
 //
 void draw() {} //End draw
 //
