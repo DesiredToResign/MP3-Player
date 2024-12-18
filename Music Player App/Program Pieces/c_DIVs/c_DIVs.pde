@@ -29,7 +29,7 @@ void setup() {
   headerWidth = mainWidth - 40;
   headerHeight = 80;
 
-  controlsX = appWidth * 1/2 - appWidth * 1/8;
+  controlsX = appWidth * 1/2 - appWidth * 1/7;
   controlsY = headerY + headerHeight + 10;
   buttonSize = 50;
   buttonSpacing = 10;
@@ -71,7 +71,7 @@ void drawMainSection() {
   fill(0);
 
   // Controls Row (Playback Buttons)
-  for (int i = 0; i < 8; i++) {
+  for (int i = 0; i < 9; i++) {
     fill(255); // White buttons
     rect(controlsX + i * (buttonSize + buttonSpacing), controlsY, buttonSize, buttonSize);
     fill(0);
@@ -102,7 +102,7 @@ void drawMainSection() {
 
 // Control Labels
 String getControlLabel(int i) {
-  String[] labels = {"|<", "<<", "Play", "Stop", ">>", ">|", "Loop", "Shuffle"};
+  String[] labels = {"|<", "<<", "Play", "Stop", ">>", ">|", "Loop", "Shuffle", "Mute"};
   return labels[i];
 }
 
