@@ -40,13 +40,14 @@ String[] actualMusicNames = {
 // Variables for hover and click detection
 boolean[] iconHovered = new boolean[2];
 boolean[] iconClicked = new boolean[2];
-boolean[] controlHovered = new boolean[8];
-boolean[] controlClicked = new boolean[8];
+boolean[] controlHovered = new boolean[9];
+boolean[] controlClicked = new boolean[9];
 boolean quitHovered = false;
 boolean quitClicked = false;
 
 // Global Variable to Track Theme
 boolean isDarkTheme = true; // false for Light, true for Dark
+boolean isMuted = false;  // Global variable to track mute state
 
 // Setup the canvas
 void setup() {
@@ -81,7 +82,7 @@ void setup() {
   headerWidth = mainWidth - 40;
   headerHeight = 80;
 
-  controlsX = appWidth * 1/2 - appWidth * 1/8;
+  controlsX = appWidth * 1/2 - appWidth * 1/7;
   controlsY = headerY + headerHeight + 20;
   buttonSize = 50;
   spacing = 10;
@@ -190,7 +191,7 @@ void drawBottomIcons() {
 
 // Draw Control Buttons (Playback)
 void drawControlButtons() {
-  for (int i = 0; i < 8; i++) {
+  for (int i = 0; i < 9; i++) {
     // Check if the mouse is hovering over the control button
     if (mouseX >= controlsX + i * (buttonSize + spacing) && mouseX <= controlsX + i * (buttonSize + spacing) + buttonSize &&
       mouseY >= controlsY && mouseY <= controlsY + buttonSize) {
@@ -235,7 +236,7 @@ void drawQuitButton() {
 
 // Control Labels
 String getControlLabel(int i) {
-  String[] labels = {"|<", "<<", "Play", "Stop", ">>", ">|", "Loop", "Shuffle"};
+  String[] labels = {"|<", "<<", "Play", "Stop", ">>", ">|", "Loop", "Shuffle", "Mute"};
   return labels[i];
 }
 
@@ -262,7 +263,7 @@ void mousePressed() {
   }
 
   // Check if a control button is clicked
-  for (int i = 0; i < 8; i++) {
+  for (int i = 0; i < 9; i++) {
     if (controlHovered[i]) {
       controlClicked[i] = true;
       println(getControlLabel(i) + " button clicked!");
@@ -313,6 +314,18 @@ void mousePressed() {
       // Loop Forever
       if (getControlLabel(i) == "Loop") {
         songs[currentSongIndex].loop();
+      }
+
+      // Mute/Unmute
+      if (getControlLabel(i) == "Mute") {
+        isMuted = !isMuted;  // Toggle mute state
+        if (isMuted) {
+          songs[currentSongIndex].mute();  // Mute the song
+          println("Muted");
+        } else {
+          songs[currentSongIndex].unmute(); // Unmute the song
+          println("Unmuted");
+        }
       }
     }
   }
